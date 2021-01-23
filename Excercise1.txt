@@ -395,5 +395,408 @@ return 0;
 
 //////////////////////////////////////////////////////
 
+17>WAP to Armstrong Numbers Between Two
+Integers
+
+->
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int num1, num2, i, num, digit, sum;
+
+  cout << "Enter first number: ";
+  cin >> num1;
+
+  cout << "Enter second number: ";
+  cin >> num2;
+
+  cout << "Armstrong numbers between " << num1 << " and " << num2 << " are: " << endl;
+  for(i = num1; i <= num2; i++)
+  {
+        sum = 0;
+        num = i;
+
+        for(; num > 0; num /= 10)
+        {
+            digit = num % 10;
+            sum = sum + digit * digit * digit;
+        }
+
+        if(sum == i)
+        {
+            cout << i << endl;
+        }
+  }
+
+  return 0;
+}
+///////////////////////////////////////////
+18>WAP to Prime Numbers Between Two Integers
+->
+
+#include <iostream>
+using namespace std;
+
+int checkPrimeNumber(int);
+
+int main() {
+    int n1, n2;
+    bool flag;
+
+    cout << "Enter two positive integers: ";
+    cin >> n1 >> n2;
+
+    
+    if (n1 > n2) {
+      n2 = n1 + n2;
+      n1 = n2 - n1;
+      n2 = n2 - n1;
+    }
+
+    cout << "Prime numbers between " << n1 << " and " << n2 << " are: ";
+
+    for(int i = n1+1; i < n2; ++i) 
+{
+       
+        flag = checkPrimeNumber(i);
+
+        if(flag)
+            cout << i << " ";
+    }
+
+    return 0;
+}
+
+
+int checkPrimeNumber(int n) 
+{
+    bool isPrime = true;
+
+    // 0 and 1 are not prime numbers
+    if (n == 0 || n == 1) {
+        isPrime = false;
+    }
+    else {
+        for(int j = 2; j <= n/2; ++j) {
+            if (n%j == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+    }
+
+    return isPrime;
+}
+/////////////////////////////////////////////////
+19>WAP to Represent a number as Sum of Two Prime
+Numbers
+->
+
+
+#include <iostream>
+using namespace std;
+
+bool checkPrime(int n);
+
+int main() {
+    int n, i;
+    bool flag = false;
+
+    cout << "Enter a positive  integer: ";
+    cin >> n;
+
+    for(i = 2; i <= n/2; ++i) 
+{
+        if (checkPrime(i)) 
+       {
+            if (checkPrime(n - i)) 
+            {
+                cout << n << " = " << i << " + " << n-i << endl;
+                flag = true;
+            }
+        }
+    }
+
+    if (!flag)
+      cout << n << " can't be expressed as sum of two prime numbers.";
+
+    return 0;
+}
+
+
+bool checkPrime(int n)
+{
+    int i;
+    bool isPrime = true;
+
+    // 0 and 1 are not prime numbers
+    if (n == 0 || n == 1) {
+        isPrime = false;
+    }
+    else {
+        for(i = 2; i <= n/2; ++i) {
+            if(n % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+    }
+
+    return isPrime;
+}
+//////////////////////////////////////////////
+20>WAP to Convert Decimal to Octal
+
+->
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int decimalToOctal(int decimalNumber);
+
+int main()
+{
+   int decimalNumber;
+   cout << "Enter a decimal number: ";
+   cin >> decimalNumber;
+   cout << decimalNumber << " in decimal = " << decimalToOctal(decimalNumber) << " in octal";
+   
+   return 0;
+}
+
+
+int decimalToOctal(int decimalNumber)
+{
+    int rem, i = 1, octalNumber = 0;
+    while (decimalNumber != 0)
+    {
+        rem = decimalNumber % 8;
+        decimalNumber /= 8;
+        octalNumber += rem * i;
+        i *= 10;
+    }
+    return octalNumber;
+}
+//////////////////////////////////////////
+21>WAP to Convert Octal to Decimal
+->
+
+#include <cmath>
+using namespace std;
+
+int octalToDecimal(int octalNumber);
+
+int main()
+{
+   int octalNumber;
+   cout << "Enter an octal number: ";
+   cin >> octalNumber;
+   cout << octalNumber << " in octal = " << octalToDecimal(octalNumber) << " in decimal";
+   
+   return 0;
+}
+
+
+int octalToDecimal(int octalNumber)
+{
+    int decimalNumber = 0, i = 0, rem;
+    while (octalNumber != 0)
+    {
+        rem = octalNumber % 10;
+        octalNumber /= 10;
+        decimalNumber += rem * pow(8, i);
+        ++i;
+    }
+    return decimalNumber;
+}
+////////////////////////////////////////////////
+22>WAP to convert binary number to decimal
+->
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int BinaryToDecimal(long long);
+
+int main()
+{
+    long long n;
+
+    cout << "Enter a binary number: ";
+    cin >> n;
+ 
+    cout << n << " in binary = " <<BinaryToDecimal(n) << "in decimal";
+    return 0;
+}
+
+int BinaryToDecimal(long long n)
+{
+    int decNum = 0, i = 0, rem;
+    while (n!=0)
+    {
+        rem = n%10;
+        n /= 10;
+        decNum += rem*pow(2,i);
+        ++i;
+    }
+    return decNum;
+}
+//////////////////////////////////////////////////
+23>WAP to convert decimal number to binary
+->
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+long long convertDecimalToBinary(int);
+
+int main()
+{
+    int n, binNum;
+
+    cout << "Enter a decimal number: ";
+    cin >> n;
+    binNum = DecimalToBinary(n);
+    cout << n << " in decimal = " << binNum << " in binary" << endl ;
+    return 0;
+}
+
+long long DecimalToBinary(int n)
+{
+    long long binNum = 0;
+    int rem, i = 1, step = 1;
+
+    while (n!=0)
+    {
+        rem = n%2;
+        cout << "Step " << step++ << ": " << n << "/2, Remainder = " << rem << ", Quotient = " << n/2 << endl;
+        n /= 2;
+        binNum += rem*i;
+        i *= 10;
+    }
+    return binNum;
+}
+/////////////////////////////////////////////////
+24>WAP to Factorial of a Number Using Recursion
+->
+
+#include<iostream>
+using namespace std;
+
+int factorial(int n);
+
+int main()
+{
+    int n;
+
+    cout << "Enter a number: ";
+    cin >> n;
+
+    cout << "Factorial of " << n << " = " << factorial(n);
+
+    return 0;
+}
+
+int factorial(int n)
+{
+    if(n > 1)
+        return n * factorial(n - 1);
+    else
+        return 1;
+}
+
+////////////////////////////////////////////////////
+25>WAP to Convert Decimal to Octal
+
+->
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int BinarytoOctal(long long);
+int main()
+{
+    long long binNum;
+
+    cout << "Enter a binary number: ";
+    cin >> binNum;
+
+    cout << binNum << " in binary = " << BinarytoOctal(binNum) << " in octal ";
+
+    return 0;
+}
+
+int convertBinarytoOctal(long long binaryNumber)
+{
+    int octalNumber = 0, decNum = 0, i = 0;
+
+    while(binNum != 0)
+    {
+        decNum += (binNum%10) * pow(2,i);
+        ++i;
+        binNum/=10;
+    }
+
+    i = 1;
+
+    while (decNum != 0)
+    {
+        octalNumber += (decNum % 8) * i;
+        decNum /= 8;
+        i *= 10;
+    }
+
+    return octalNumber;
+}
+
+//////////////////////////////////////////////////////
+26>WAP to Convert Binary to Octal
+->
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int convertBinarytoOctal(long long);
+int main()
+{
+    long long binaryNumber;
+
+    cout << "Enter a binary number: ";
+    cin >> binaryNumber;
+
+    cout << binaryNumber << " in binary = " << BinarytoOctal(binaryNumber) << " in octal ";
+
+    return 0;
+}
+
+int BinarytoOctal(long long binaryNumber)
+{
+    int octalNumber = 0, decimalNumber = 0, i = 0;
+
+    while(binaryNumber != 0)
+    {
+        decimalNumber += (binaryNumber%10) * pow(2,i);
+        ++i;
+        binaryNumber/=10;
+    }
+
+    i = 1;
+
+    while (decimalNumber != 0)
+    {
+        octalNumber += (decimalNumber % 8) * i;
+        decimalNumber /= 8;
+        i *= 10;
+    }
+
+    return octalNumber;
+}
 
 ////////////////////////////////////////////////
